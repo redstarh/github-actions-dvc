@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   process_data:
-    cmd: python process_data.py
+    cmd: python process_data.py --no-commit python process_data.py
     deps:
     - path: data_raw.csv
       hash: md5
