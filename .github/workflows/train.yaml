@@ -3,15 +3,15 @@ on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
       - uses: iterative/setup-cml@v2
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          sudo -H pip install -r requirements.txt
+          pip install -r requirements.txt
           dvc repro
 
           git fetch --prune ## https://git-scm.com/docs/git-fetch
